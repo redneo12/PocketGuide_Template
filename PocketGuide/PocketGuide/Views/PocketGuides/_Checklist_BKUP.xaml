@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:PocketGuide"
+             xmlns:models="clr-namespace:PocketGuide.Models"
+             xmlns:viewmodels="clr-namespace:PocketGuide.ViewModels"
+             x:Class="PocketGuide.PocketGuides.Checklist_BKUP"
+             x:DataType="viewmodels:ChecklistViewModel"
+             mc:Ignorable="d">
+    <ContentPage.BindingContext>
+        <viewmodels:ChecklistViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <ListView ItemsSource="{Binding ChecklistGrouped}"  GroupDisplayBinding="{Binding Key}" GroupShortNameBinding="{Binding Key}" HasUnevenRows="True" SelectionMode="None" VerticalOptions="Center" HorizontalOptions="Center" Margin="10,0,10,0" IsGroupingEnabled="true">
+            <!--<ListView.SelectedItem x:DataType="viewmodels:ChecklistViewModel" Command="{Binding SetVisibility}"/>-->
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:ChecklistModel">
+                    <ViewCell>
+                        <Grid  HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <CheckBox x:Name="checkBox" CheckedChanged="OnCheckedChanged" Grid.Row="0" Grid.Column="0" />
+                            <Label Text="{Binding Item}" Grid.Row="0" Grid.Column="1"/>
+
+
+                            <Entry Text="{Binding Note}" Placeholder="Notes..." MaxLength="250" Grid.Row="1"  Grid.Column="0">
+                                <Entry.Triggers>
+                                    <DataTrigger TargetType="Entry"
+                                            Binding="{Binding Source={x:Reference checkBox}, Path=IsChecked}" Value="True">
+                                        <Setter Property="IsVisible"  Value="True"/>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Entry"
+                                            Binding="{Binding Source={x:Reference checkBox}, Path=IsChecked}" Value="False">
+                                        <Setter Property="IsVisible"  Value="False"/>
+                                    </DataTrigger>
+                                </Entry.Triggers>
+                            </Entry>
+
+                            <Label x:Name="dateField" Text="{Binding Date}" Grid.Row="1"  Grid.Column="1">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                            Binding="{Binding Source={x:Reference checkBox}, Path=IsChecked}" Value="True">
+                                        <Setter Property="IsVisible"  Value="True"/>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Label"
+                                            Binding="{Binding Source={x:Reference checkBox}, Path=IsChecked}" Value="False">
+                                        <Setter Property="IsVisible"  Value="False"/>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+
+        </ListView>
+        <ActivityIndicator 
+                Grid.RowSpan="2"
+                IsVisible="{Binding IsBusy}"
+                IsRunning="{Binding IsBusy}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
+    </StackLayout>
+
+</ContentPage>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PocketGuide"
+             x:Class="PocketGuide.PocketGuides.PageIntroduction"
+             >
+    <local:TemplatePocketGuide PageTitle="Introduction">
+        <local:TemplatePocketGuide.Body>
+            <StackLayout>
+                <Label LineBreakMode="WordWrap">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="WHMIS 2015 (GHS) " FontAttributes="Bold" />
+                            <Span Text="is Federal and Provincial Legislation designed to keep workers and employers informed of the dangers associated with the hazardous materials they use or may come into contact with while on the job."/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="WHMIS dates back to 1988, but in February of 2015, Canada adopted parts of the United Nations' Globally Harmonized System (GHS) and created a new system called WHMIS 2015." />
+                <Label Text="On December 1st, 2018, the old WHMIS labels, material safety data sheets and hazard symbols became obsolete and were no longer allowed to be used." />
+                <Label Text="WHMIS 2015 has advantages over the old program in that its systems and symbols are recognized worldwide which makes international labelling and shipping of products much easier." />
+                <Label Text="The regulations relating to WHMIS 2015 are the:" />
+                <Label Text="• Hazardous Products Act (HPA); and" />
+                <Label Text="• Hazardous Products Regulations (HPR)." />
+                <StackLayout Margin="0, 10, 0, 0">
+                    <Label FontAttributes="Bold" FontSize="Large" Margin="10"
+                    Text="WHMIS 2015 (GHS) Pocket Guide"/>
+                    <Label 
+                    Text="This guide serves as a basic overview of WHMIS 201. Reading this WHMIS pocket guide without completing traiing, does not fulfill WHMIS training requirements."/>
+                    <Label FontAttributes="Bold" Margin="0, 15, 0, 15"
+                    Text="Disclaimer"/>
+                    <Label
+                    Text="Necessary measures have been taken to ensure the accuracy and reliabilit of the information contained in this pocket guide. However, YOW Canada Inc. makes no representation or warranty in connection therewith."/>
+                    <Label
+                    Text="YOW Canada Inc. disclaims any liability or responsibility for loss or damages resulting from the use of information contained in this pocket guide or for the violation of any Federal or Provincial regulations with which information in this pocket guide may conflict."/>
+                </StackLayout>
+
+                <StackLayout VerticalOptions="EndAndExpand" HorizontalOptions="Center">
+                    <Label VerticalOptions="Center" HorizontalOptions="Center"
+                        Text="2019 Edition"/>
+                    <Label VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"
+                        Text="Written and Published by:"/>
+                    <Label VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"
+                        Text="YOW Canada Inc."/>
+                    <Label VerticalOptions="Center" HorizontalOptions="Center"
+                        Text="1306 Algoma Road."/>
+                    <Label VerticalOptions="Center" HorizontalOptions="Center" 
+                        Text="Ottawa, Ontario K1B 3W8"/>
+                    <Label VerticalOptions="Center" HorizontalOptions="Center"
+                        Text="© 2018 All Rights Reserved - YOW Canada Inc."/>
+                    <Label Text="www.yowcanada.com" Style="{StaticResource Title}" FontSize="Small" TextColor="{Binding Source={x:Static local:Strings.ColYowBlue}}" VerticalOptions="EndAndExpand" HorizontalOptions="Center" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenUrl}" CommandParameter="https://yowcanada.com/"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+        </local:TemplatePocketGuide.Body>
+    </local:TemplatePocketGuide>
+</ContentPage>
